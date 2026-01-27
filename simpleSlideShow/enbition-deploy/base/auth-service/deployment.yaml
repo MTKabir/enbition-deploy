@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: ghcr.io/inholland-cloud-minor-2526/group-7-auth-service/auth-service:latest
+          image: ghcr.io/inholland-cloud-minor-2526/group-7-auth-service/auth-service:3c0be8fc7b590c125fa79e77426983506f676296
           ports:
             - containerPort: 8080
           env:
@@ -40,7 +40,7 @@ spec:
                 secretKeyRef:
                   name: auth-db-app
                   key: password
-    
+
             - name: RABBITMQ_HOST
               value: rabbitmq
             - name: RABBITMQ_PORT
