@@ -18,8 +18,25 @@
 #           ports:
 #             - containerPort: 8080
 #           env:
-#             - name: MESSAGE
+#             - name: DB_HOST
+#               value: auth-db-rw
+#             - name: DB_PORT
 #               valueFrom:
-#                 configMapKeyRef:
-#                   name: app-config
-#                   key: MESSAGE
+#                 secretKeyRef:
+#                   name: auth-db-app
+#                   key: port
+#             - name: DB_NAME
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: auth-db-app
+#                   key: dbname
+#             - name: DB_USER
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: auth-db-app
+#                   key: username
+#             - name: DB_PASSWORD
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: auth-db-app
+#                   key: password
