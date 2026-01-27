@@ -1,0 +1,38 @@
+﻿kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: fotoshow
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fotoshow
+  template:
+    metadata:
+      labels:
+        app: fotoshow
+    spec:
+      containers:
+        - name: fotoshow
+          image: 'ghcr.io/mirkarlar/fotoshow:sha-0cbe368'
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          ports:
+            - containerPort: 18181
+              protocol: TCP
+          env:
+            - name: SLIDESHOW_EXTERNAL_DIR
+              value: /data
+
+          volumeMounts:
+            - name: foto-data-volume
+              mountPath: /data
+      volumes:
+        - name: foto-data-volume
+          persistentVolumeClaim:
+            claimName: pvc-foto-show
