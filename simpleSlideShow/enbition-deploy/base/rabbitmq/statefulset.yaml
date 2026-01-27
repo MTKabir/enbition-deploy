@@ -13,8 +13,6 @@ spec:
       labels:
         app: rabbitmq
     spec:
-      securityContext:
-        fsGroup: 100144000
       containers:
         - name: rabbitmq
           image: rabbitmq:3.13-management
