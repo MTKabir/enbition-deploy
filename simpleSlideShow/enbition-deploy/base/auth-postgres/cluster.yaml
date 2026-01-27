@@ -1,0 +1,27 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: auth-db
+spec:
+  instances: 1
+  enablePDB: false
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1-standard-bullseye
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 1Gi
+    storageClass: rook-ceph-block
+
+  walStorage:
+    size: 1Gi
+    storageClass: rook-ceph-block
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 200Mi
+    limits:
+      cpu: "1"
+      memory: 500Mi
