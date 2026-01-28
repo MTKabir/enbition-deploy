@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    application: enbition
+  name: enbition-app-monitor
+  namespace: group-7-grafana
+spec:
+  endpoints:
+    - interval: 30s
+      path: /q/metrics
+      targetPort: 18181
+  selector:
+    matchLabels:
+      app: enbition

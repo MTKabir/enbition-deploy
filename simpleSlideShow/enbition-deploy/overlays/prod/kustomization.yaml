@@ -5,3 +5,4 @@ namespace: group-7-felix
 
 resources:
   - ../../base
+  - service-monitor.yaml
