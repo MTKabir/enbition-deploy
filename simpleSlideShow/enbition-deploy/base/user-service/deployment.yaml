@@ -12,6 +12,8 @@ spec:
       labels:
         app: user-service
     spec:
+      imagePullSecrets:
+        - name: image-pull-secret
       containers:
         - name: user-service
           image: ghcr.io/inholland-cloud-minor-2526/group7-user-service/user-service:e19984f68ea1e862f521cee8a2cec8df666a945c
