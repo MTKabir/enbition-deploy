@@ -1,14 +1,18 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+apiVersion: v1
+kind: Service
 metadata:
+  name: user-service
+  namespace: group-7-felix
   labels:
-    application: enbition
-  name: enbition-app-monitor
+    app: user-service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/q/metrics"
+    prometheus.io/port: "18181"
 spec:
-  endpoints:
-    - interval: 30s
-      path: /q/metrics
-      targetPort: 18181
   selector:
-    matchLabels:
-      app: enbition
+    app: user-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 18181
