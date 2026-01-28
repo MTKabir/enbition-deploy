@@ -16,7 +16,7 @@ spec:
         - name: image-pull-secret
       containers:
         - name: user-service
-          image: ghcr.io/inholland-cloud-minor-2526/group7-user-service/user-service:a9754fdfc4eaf46db72160da68c856f5a901658e
+          image: ghcr.io/inholland-cloud-minor-2526/group7-user-service/user-service:454c63762be425c6cbf3de88b05a683e9ff15e3f
           ports:
             - containerPort: 8080
           env:
