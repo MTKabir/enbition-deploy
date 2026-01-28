@@ -1,11 +1,11 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: auth-service
+  name: user-service
 spec:
   to:
     kind: Service
-    name: auth-service
+    name: user-service
   port:
     targetPort: 8080
   tls:

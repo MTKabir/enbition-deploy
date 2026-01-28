@@ -6,39 +6,39 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: auth-service
+      app: user-service
   template:
     metadata:
       labels:
-        app: auth-service
+        app: user-service
     spec:
       containers:
-        - name: auth-service
-          image: ghcr.io/inholland-cloud-minor-2526/group-7-auth-service/auth-service:3c0be8fc7b590c125fa79e77426983506f676296
+        - name: user-service
+          image: ghcr.io/inholland-cloud-minor-2526/group7-user-service/user-service:e19984f68ea1e862f521cee8a2cec8df666a945c
           ports:
             - containerPort: 8080
           env:
             - name: DB_HOST
-              value: auth-db-rw
+              value: user-db-rw
             - name: DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: auth-db-app
+                  name: user-db-app
                   key: port
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: auth-db-app
+                  name: user-db-app
                   key: dbname
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: auth-db-app
+                  name: user-db-app
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: auth-db-app
+                  name: user-db-app
                   key: password
 
             - name: RABBITMQ_HOST
@@ -55,14 +55,3 @@ spec:
                 secretKeyRef:
                   name: rabbitmq-secret
                   key: RABBITMQ_PASSWORD
-
-            - name: JWT_PUBLIC_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_PUBLIC_KEY
-            - name: JWT_PRIVATE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-signing-secret
-                  key: JWT_PRIVATE_KEY

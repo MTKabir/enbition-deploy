@@ -7,3 +7,4 @@ resources:
   - rabbitmq
   - redis
   - user-postgres
+  - user-service
