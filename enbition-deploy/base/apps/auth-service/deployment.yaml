@@ -1,47 +1,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: auth-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: user-service
+      app: auth-service
   template:
     metadata:
       labels:
-        app: user-service
+        app: auth-service
     spec:
-      imagePullSecrets:
-        - name: image-pull-secret
       containers:
-        - name: user-service
-          image: ghcr.io/inholland-cloud-minor-2526/group7-user-service/user-service:3636a48d7eb473059b0bce9938761fe8d444c3e5
+        - name: auth-service
+          image: ghcr.io/inholland-cloud-minor-2526/group-7-auth-service/auth-service:943fe8937415f57ecdd3db6f054802f9905674ab
           ports:
             - name: http
               containerPort: 8080
           env:
             - name: DB_HOST
-              value: user-db-rw
+              value: auth-db-rw
             - name: DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: user-db-app
+                  name: auth-db-app
                   key: port
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: user-db-app
+                  name: auth-db-app
                   key: dbname
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: user-db-app
+                  name: auth-db-app
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: user-db-app
+                  name: auth-db-app
                   key: password
 
             - name: RABBITMQ_HOST
@@ -58,3 +56,14 @@ spec:
                 secretKeyRef:
                   name: rabbitmq-secret
                   key: RABBITMQ_PASSWORD
+
+            - name: JWT_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_PUBLIC_KEY
+            - name: JWT_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-signing-secret
+                  key: JWT_PRIVATE_KEY
