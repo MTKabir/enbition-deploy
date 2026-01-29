@@ -13,7 +13,7 @@ spec:
         app: expense-service
     spec:
       imagePullSecrets:
-        - name: image-pull-secret
+        - name: image-pull-secret-expense
       containers:
         - name: expense-service
           image: ghcr.io/inholland-cloud-minor-2526/group7-expense-service/expense-service:b7c87500caf4fbb7fe7c8241fde85ca6749c7639
