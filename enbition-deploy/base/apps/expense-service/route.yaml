@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: expense-service
+spec:
+  to:
+    kind: Service
+    name: expense-service
+  port:
+    targetPort: 8000
+  tls:
+    termination: edge

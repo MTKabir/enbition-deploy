@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - auth-service
   - user-service
-  
- 
+  - expense-service

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: expense-service
+  template:
+    metadata:
+      labels:
+        app: expense-service
+    spec:
+      imagePullSecrets:
+        - name: image-pull-secret
+      containers:
+        - name: expense-service
+          image: ghcr.io/inholland-cloud-minor-2526/group7-expense-service/expense-service:b7c87500caf4fbb7fe7c8241fde85ca6749c7639
+          ports:
+            - name: http
+              containerPort: 8000
