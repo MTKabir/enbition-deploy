@@ -9,4 +9,4 @@ spec:
   endpoints:
     - interval: 30s
       path: /q/metrics
-      targetPort: 18181
+      targetPort: 8080
