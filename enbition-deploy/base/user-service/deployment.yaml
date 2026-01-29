@@ -18,7 +18,8 @@ spec:
         - name: user-service
           image: ghcr.io/inholland-cloud-minor-2526/group7-user-service/user-service:3636a48d7eb473059b0bce9938761fe8d444c3e5
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           env:
             - name: DB_HOST
               value: user-db-rw

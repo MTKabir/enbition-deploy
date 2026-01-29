@@ -1,19 +1,12 @@
-apiVersion: monitoring.coreos.com/v1        # API group and version for Prometheus Operator ServiceMonitor
-kind: ServiceMonitor                        # Tells Kubernetes this resource is a ServiceMonitor
-metadata:                                  # Metadata section
-  name: user-service               # Name of the ServiceMonitor resource
-  namespace: group-7-development            # Namespace where the ServiceMonitor is created
-  labels:                                  # Labels attached to the ServiceMonitor itself
-    app: user-service                      # Label used for identification/organization
-spec:                                      # Specification of how Prometheus should scrape
-  namespaceSelector:                       # Defines which namespaces Prometheus should look in
-    matchNames:                            # Explicit list of namespaces to monitor
-      - group-7-development                # Namespace containing the target Service
-  selector:                                # Selector used to find the target Service
-    matchLabels:                           # Service must have matching labels
-      app: user-service                    # Service label that Prometheus will match
-  endpoints:                               # List of scrape endpoints
-    - port: 8080                        # Named port on the Service to scrape (must exist in Service)
-      path: /q/metrics                     # HTTP path where metrics are exposed by Quarkus
-      interval: 30s                        # How often Prometheus scrapes metrics
-      scheme: http                         # Protocol used to scrape the metrics endpoint
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: user-service
+spec:
+  selector:
+    matchLabels:
+      app: user-service
+  endpoints:
+    - port: http
+      path: /q/metrics
+      interval: 15s
