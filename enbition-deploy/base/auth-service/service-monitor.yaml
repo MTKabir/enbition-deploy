@@ -1,12 +1,15 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: auth-service
+  labels:
+    application: auth-service
+  name: auth-service-metrics
+  namespace: group-7-development
 spec:
+  endpoints:
+    - interval: 30s
+      path: /q/metrics
+      targetPort: 8080
   selector:
     matchLabels:
       app: auth-service
-  endpoints:
-    - port: http
-      path: /q/metrics
-      interval: 15s
